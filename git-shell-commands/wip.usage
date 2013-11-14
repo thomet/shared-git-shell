@@ -1,0 +1,3 @@
+wip <repo>
+	Commits all changes and creates a new branch named <current_branch>_wip	
+

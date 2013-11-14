@@ -1,0 +1,4 @@
+#!/bin/sh
+
+find ~/repos/ -type d -name .git -maxdepth 2 | xargs -n 1 dirname | grep -uoe [^/]*$
+

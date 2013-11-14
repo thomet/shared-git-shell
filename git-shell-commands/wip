@@ -1,0 +1,40 @@
+#!/bin/sh
+
+repos=( $(find ~/repos/ -type d -name $1 -maxdepth 1) )
+
+for repo in ${repos[@]}; do
+  echo $repo
+  cd $repo
+  git status
+  
+  while true; do
+      read -p "Do you wish to make a new branch with this changes?" yn
+      case $yn in
+          [Yy]* ) break;;
+          [Nn]* ) echo "abourt."; exit;;
+          * ) echo "Please answer yes or no.";;
+      esac
+  done
+  
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  original_branch=${ref#refs/heads/}
+  new_branch_name=$original_branch"_wip"
+
+  #git stash
+
+  #git checkout -b $new_branch_name
+
+  #git stash apply
+  
+  #git add -A
+  
+  #git commit -m "WIP"
+  
+  #git checkout $original_branch
+  
+  #git stash pop
+  
+  echo "New branch $new_branch_name created!"
+  
+done

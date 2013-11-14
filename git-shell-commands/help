@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "Run 'help' for help, or 'exit' to leave."
+echo ""
+echo "Available commands:"
+
+cd "$(dirname "$0")"
+
+for cmd in *.usage; do
+    cat $cmd
+done
+
